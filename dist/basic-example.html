@@ -1,0 +1,72 @@
+<html>
+	<head>
+		<title>Basic Example</title>
+	</head>
+	<body>
+		<div id='app'>
+			<h1>Object option example</h1>
+			<v-mselect v-model="tags" :options="options">
+				<div slot-scope="{ tags, options, addOption, removeTag }">
+					<div>
+						<span v-for="tag in tags" :key="tag">
+			        		{{ tag }}
+			        		<button type="button" @click="removeTag(tag)">&times;</button>
+			        	</span>	
+					</div>
+					
+			        <select @change="addOption($event)">
+			        	<option :value="null">- Select -</option>
+			        	<option v-for="(option, key) in options" :key="key" :value="option.key">{{ option.value }}</option>
+			        </select>
+			    </div>
+			</v-mselect>
+
+			<h1>String option example</h1>
+			<v-mselect v-model="tags2" :options="options2">
+				<div slot-scope="{ tags, options, addOption, removeTag }">
+					<div>
+						<span v-for="tag in tags" :key="tag">
+			        		{{ tag }}
+			        		<button type="button" @click="removeTag(tag)">&times;</button>
+			        	</span>	
+					</div>
+					
+			        <select @change="addOption($event)">
+			        	<option :value="null">- Select -</option>
+			        	<option v-for="option in options" :key="option" :value="option">{{ option }}</option>
+			        </select>
+			    </div>
+			</v-mselect>
+		</div>	
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="v-mselect.min.js"></script>
+		<script>
+			new Vue(
+				{
+					el: '#app',
+					data() {
+						return {
+							tags : ['one', 'two', 'three'],
+							options: [
+								{key: 'one', value: 'One'},
+								{key: 'two', value: 'Two'},
+								{key: 'three', value: 'Three'},
+								{key: 'four', value: 'Four'},
+								{key: 'five', value: 'Five'},
+							],
+							tags2 : ['One', 'Two', 'Three'],
+							options2: [
+								'One',
+								'Two',
+								'Three',
+								'Four',
+								'Five',
+							]
+
+						};
+					}
+				}
+			);
+		</script>
+	</body>
+</html>
