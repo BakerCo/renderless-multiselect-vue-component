@@ -1,0 +1,1 @@
+# renderless-multiselect-vue-component
